@@ -1,0 +1,21 @@
+name: Generate terraform docs
+on: [ push ]
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
+    
+
+    - name: Render terraform docs and push changes back to main
+      uses: terraform-docs/gh-actions@main
+      with:
+        working-dir: .
+        output-file: README.md
+        output-method: inject
+        git-push: "true"
+        git-commit-message: "Auto generate Terraform docs commit"
+      env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
