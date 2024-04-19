@@ -18,4 +18,4 @@ jobs:
         git-push: "true"
         git-commit-message: "Auto generate Terraform docs commit"
       env:
-          GITHUB_TOKEN: ${{ github.token }}
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
