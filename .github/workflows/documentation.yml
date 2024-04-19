@@ -7,8 +7,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         ref: ${{ github.head_ref }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      
         
     - name: Render terraform docs and push changes back to main
       uses: terraform-docs/gh-actions@main
@@ -18,5 +17,6 @@ jobs:
         output-method: inject
         git-push: "true"
         git-commit-message: "Auto generate Terraform docs commit"
-        token: ${{ secrets.GH_PAT }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
       
